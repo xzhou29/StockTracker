@@ -7,7 +7,7 @@ import xlrd
 START_DATE = '2005-01-01'
 END_DATE = str(datetime.now().strftime('%Y-%m-%d'))
 SAMPLE_STOCK = 'TM'
-USA_STOCK_SYMBOL_LIST = utils.get_stock_list_symbol('resources/US-Stock-Symbols.xlsx')
+USA_STOCK_SYMBOL_LIST = utils.get_stock_symbol_USA_stock('resources/US-Stock-Symbols.xlsx')
 USA_STOCK_SYMBOL_SP500 = utils.get_stock_symbol_sp_500('resources/SP_500.xlsx')
 SAMPLE_LIST = utils.get_stock_symbol_sp_500('resources/sample.xlsx')
 

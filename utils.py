@@ -2,7 +2,7 @@ import pandas as pd
 from pprint import pprint
 
 
-def get_stock_list_symbol(file_name):
+def get_stock_symbol_USA_stock(file_name):
     results = []
     dfs = pd.read_excel(file_name, sheet_name=None)
     list_symbol = dfs['Sheet1']['Symbol']

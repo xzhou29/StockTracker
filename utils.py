@@ -22,3 +22,8 @@ def get_stock_symbol_sp_500(file_name):
     return results[:-2]
 
 
+def find_ca_symbols(list_symbol):
+
+    a1, s1, s2, s3 = CANSLIM.feature_c(START_DATE, END_DATE, symbol)
+
+    return results

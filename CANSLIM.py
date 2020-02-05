@@ -14,7 +14,7 @@ def test(s, e, symbol):
 # conditions:
 # 1). current earnings should be up at least 25% in the most recent financial quarter
 # 2). earnings are accelerating in recent quarters
-def feature_c(start, end, symbol):
+def feature_c(start, end, symbol, growth_rate):
     try:
         up = True
         good_sign_1, good_sign_2, good_sign_3 = (True,) * 3
@@ -22,7 +22,7 @@ def feature_c(start, end, symbol):
         results = yahoo.get_financial_stmts('quarterly', 'income')
         key_data = yahoo.get_key_statistics_data()
         earnings_quarterly_growth = key_data[symbol]['earningsQuarterlyGrowth']
-        if earnings_quarterly_growth < 0.15:
+        if earnings_quarterly_growth < growth_rate:
             up = False
         print(symbol, ": ", earnings_quarterly_growth)
         index = 0

@@ -1,4 +1,4 @@
 # StockScreener
 
-![Image description](resources/images/prototype_interface.png)
+![Image description](resources/images/interface_prototype.png)
 

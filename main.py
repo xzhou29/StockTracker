@@ -15,7 +15,7 @@ class Control(Frame):
     def __init__(self, parent):
         Frame.__init__(self, parent, v=None, raw_input=None)
         self.parent = parent
-        self.parent.geometry("640x640+0+0")
+        self.parent.geometry("960x600+0+0")
         self.parent.title("Stock Screener")
         self.parent.resizable(False, False)
         self.inp = None
@@ -28,24 +28,39 @@ class Control(Frame):
         self.raw_input = symbol = self.v.get().upper()
         a, b1, b2, b3 = features.current_earning_growth_grater_than_15_percent(START_DATE, END_DATE, symbol)
         print(a, b1, b2, b3)
+        quote = " Here is the list of good signs for the stock '" + symbol + "': \n"
         if a:
+            quote += " ***　Current earning growth rate is greater than 15%!\n"
             print(" ***　Current earning growth rate is greater than 15%!")
         if b1:
-            print(" ******　Green sign #1: earnings are accelerating in recent quarters!")
+            quote += " ******　Green sign #1: earnings are accelerating in recent quarters!\n"
+            print(" ******　Good sign #1: earnings are accelerating in recent quarters!")
         if b2:
-            print(" ******　Green sign #1: net income are accelerating in recent quarters!")
+            quote += " ******　Green sign #1: net income are accelerating in recent quarters!\n"
+            print(" ******　Good sign #2: net income are accelerating in recent quarters!")
         if b3:
-            print(" ******　Green sign #1: gross profit are accelerating in recent quarters!")
+            quote += " ******　Green sign #1: gross profit are accelerating in recent quarters!\n"
+            print(" ******　Good sign #3: gross profit are accelerating in recent quarters!")
+        self.display(quote, "green")
+
 
     def initUI(self):
         self.frame = Frame(self, relief=RAISED, borderwidth=0)
-        Label(self.frame, text="Analyze a stock symbol", font=("arial", 20, "bold")).pack()
+        Label(self.frame, text="Input your stock symbol: ", font=("arial", 20, "bold")).pack()
+        self.text = Text(self.frame, height=20, width=80)
         self.frame.pack(fill=BOTH, expand=True)
         self.entry1 = Entry(self.frame, textvariable=self.v)
         self.entry1.pack(side=TOP, fill=X, expand=False, padx=2, pady=2)
         self.entry1.focus_set()
         self.rename_button = Button(self.frame, text="Start", command=self.analyze_stock_single)
         self.rename_button.pack(side=TOP, expand=False, padx=2, pady=2)
+
+
+
+        # self.text = Text(self.frame, height=2, width=30)
+        # self.text.insert(INSERT, "test ")
+        # # self.text.insert(END, "bye bye ")
+        # self.text.pack()
 
         # root.title("Stock Screener")
         # root.geometry("640x640+0+0")
@@ -72,6 +87,16 @@ class Control(Frame):
 
         """
         self.pack(fill=BOTH, expand=True)
+
+
+    def display(self, content, color):
+        self.text.config(state=NORMAL)
+        self.text.delete('1.0', END)
+        self.text.insert(INSERT, content)
+        self.text.pack()
+        self.text.tag_add("here", "1.0", END)
+        self.text.tag_config("here", background="white", foreground=color)
+        self.text.config(state=DISABLED)
 
 
 def main():
